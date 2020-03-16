@@ -24383,13 +24383,19 @@ module.exports = async function(options) {
     for(let locale of locales) {
         let fileName = locale.code + '.' + options.format;
         let filePath = path.join(options.destination, fileName);
+        let lastModifiedFilePath = path.join(options.destination, '.' + fileName + '.txt');
+
         let mtime = 0;
 
         try {
-            const stats = fs.statSync(filePath);
-            mtime = stats.mtime;
+            mtime = fs.readFileSync(lastModifiedFilePath, 'utf8');
         } catch(e) {
-            
+            try {
+                const stats = fs.statSync(filePath);
+                mtime = stats.mtime;
+            } catch(e) {
+
+            }
         }
 
         console.log(mtime ? 'Updating' : 'Downloading', 'locale', locale.code, "(" + locale.name + ")", 'to', filePath);
@@ -24406,13 +24412,15 @@ module.exports = async function(options) {
             })
             .on('response', response => {
                 if(response.statusCode == 200) {
-                    let lastModification = new Date(response.headers['last-modified']);
+                    let lastModification = response.headers['last-modified'];
 
                     req
                         .pipe(fs.createWriteStream(filePath))
                         .on('close', function() {
                             const stats = fs.statSync(filePath);
-                            fs.utimes(filePath, new Date(stats.atime), lastModification, () => resolve(true));
+                            fs.utimes(filePath, new Date(stats.atime), new Date(lastModification), function() {
+                                fs.writeFile(lastModifiedFilePath, lastModification, { encoding: 'utf8' }, (error) => error ? reject(error) : resolve(true));
+                            });
                         });
                 } else if(response.statusCode == 304) {
                     console.log('Locale', locale.code, 'is up to date.');
