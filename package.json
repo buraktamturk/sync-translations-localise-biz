@@ -4,6 +4,7 @@
   "description": "Sync Translations GitHub action using localise.biz API",
   "main": "index.js",
   "scripts": {
+    "build": "ncc build index.js -o dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,5 +15,8 @@
     "mkdirp": "^1.0.3",
     "request": "^2.88.2",
     "request-promise-native": "^1.0.8"
+  },
+  "devDependencies": {
+    "@zeit/ncc": "^0.21.1"
   }
 }
