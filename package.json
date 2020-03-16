@@ -1,0 +1,17 @@
+{
+  "name": "sync-translations-localise-biz",
+  "version": "1.0.0",
+  "description": "Sync Translations GitHub action using localise.biz API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "mkdirp": "^1.0.3",
+    "request": "^2.88.2",
+    "request-promise-native": "^1.0.8"
+  }
+}

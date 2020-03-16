@@ -1,0 +1,27 @@
+name: 'Sync Translations from localise.biz'
+author: 'Burak Tamturk'
+description: 'Sync Translations using localise.biz API'
+inputs:
+  apiKey:
+    description: 'API Key of the localise.biz project'
+    required: true
+  destination:
+    description: 'Destination folder'
+    required: true
+  format:
+    description: 'Export format'
+    required: false
+    default: 'json'
+  failIfNotChanged:
+    description: 'Fail the action when there is no update made to the language files'
+    required: false
+    default: true
+outputs:
+  count:
+    description: 'Count of updated files '
+runs:
+  using: 'node12'
+  main: 'index.js'
+branding:
+  icon: 'globe'  
+  color: 'green'
