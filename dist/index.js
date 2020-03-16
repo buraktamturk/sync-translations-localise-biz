@@ -1628,12 +1628,12 @@ const action = __webpack_require__(751);
 
 const apiKey = core.getInput('apiKey', { required: true });
 const destination = core.getInput('destination', { required: true });
-const format = core.getInput('format');
+var format = core.getInput('format');
 if(!format || format === '') {
     format = 'json';
 }
 
-const failIfNotChanged = core.getInput('failIfNotChanged');
+var failIfNotChanged = core.getInput('failIfNotChanged');
 if(!failIfNotChanged || failIfNotChanged === '') {
     failIfNotChanged = false;
 } else {
