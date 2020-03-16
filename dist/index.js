@@ -1642,10 +1642,10 @@ if(!failIfNotChanged || failIfNotChanged === '') {
 
 action({ apiKey, destination, format, failIfNotChanged })
     .then(function(count) {
-        core.setOutput('count', count);
+        core.setOutput('count', count.toString());
     })
     .catch(function(error) {
-        core.setFailed(error.message);
+        core.setFailed((error && error.message) || error || "Unknown error");
     });
 
 
@@ -24430,6 +24430,8 @@ module.exports = async function(options) {
     if(!updatedFiles.length && options.failIfNotChanged) {
         throw new Error('No changes has been made to any file.');
     }
+
+    console.log(updatedFiles.length, 'files are updated.');
 
     return updatedFiles.length;
 }

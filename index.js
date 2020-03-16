@@ -18,8 +18,8 @@ if(!failIfNotChanged || failIfNotChanged === '') {
 
 action({ apiKey, destination, format, failIfNotChanged })
     .then(function(count) {
-        core.setOutput('count', count);
+        core.setOutput('count', count.toString());
     })
     .catch(function(error) {
-        core.setFailed(error.message);
+        core.setFailed((error && error.message) || error || "Unknown error");
     });

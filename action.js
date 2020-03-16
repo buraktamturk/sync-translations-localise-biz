@@ -70,5 +70,7 @@ module.exports = async function(options) {
         throw new Error('No changes has been made to any file.');
     }
 
+    console.log(updatedFiles.length, 'files are updated.');
+
     return updatedFiles.length;
 }
