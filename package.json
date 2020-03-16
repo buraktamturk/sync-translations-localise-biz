@@ -10,6 +10,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@actions/core": "^1.2.3",
     "mkdirp": "^1.0.3",
     "request": "^2.88.2",
     "request-promise-native": "^1.0.8"
