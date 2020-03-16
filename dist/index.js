@@ -1626,7 +1626,7 @@ module.exports = {
 const core = __webpack_require__(470);
 const action = __webpack_require__(751);
 
-const apiKey = core.getInput('secret', { required: true });
+const apiKey = core.getInput('apiKey', { required: true });
 const destination = core.getInput('destination', { required: true });
 const format = core.getInput('format');
 if(!format || format === '') {

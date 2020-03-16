@@ -2,7 +2,7 @@
 const core = require('@actions/core');
 const action = require('./action.js');
 
-const apiKey = core.getInput('secret', { required: true });
+const apiKey = core.getInput('apiKey', { required: true });
 const destination = core.getInput('destination', { required: true });
 const format = core.getInput('format');
 if(!format || format === '') {

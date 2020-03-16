@@ -18,7 +18,7 @@ inputs:
     default: true
 outputs:
   count:
-    description: 'Count of updated files '
+    description: 'Count of updated translation files'
 runs:
   using: 'node12'
   main: 'dist/index.js'
